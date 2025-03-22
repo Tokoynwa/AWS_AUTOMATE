@@ -1,5 +1,5 @@
 variable "cluster_name" {
-  default = "AWS-Cluster"
+  default = "my-eks-cluster"
 }
 
 variable "region" {
@@ -9,3 +9,4 @@ variable "region" {
 variable "node_instance_type" {
   default = "t3.medium"
 }
+
