@@ -1,6 +1,3 @@
-provider "aws" {
-  region = "us-east-1"
-}
 
 # ✅ VPC Creation (Minimal Setup for Speed)
 resource "aws_vpc" "eks_vpc" {
