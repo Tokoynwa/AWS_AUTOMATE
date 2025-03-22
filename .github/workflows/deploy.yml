@@ -39,3 +39,7 @@ jobs:
       - name: Terraform Apply
         run: terraform apply -auto-approve
         working-directory: ./infrastructure   # ✅ Correct path for Terraform files
+
+      - name: Terraform Destrou
+        run: terraform destroy --auto-approve
+        working.directory: ./infrastructure   # ✅ Correct path for Terraform files
