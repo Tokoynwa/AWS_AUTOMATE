@@ -1,4 +1,4 @@
-name: Destroy EKS Cluster
+name: Destroy Infrastructure
 
 on:
   workflow_dispatch:
@@ -26,8 +26,24 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
-      - name: Terraform Init
+      - name: Initialize Terraform
         run: terraform init
+        working-directory: ./infrastructure
+
+      - name: Terraform Refresh (Optional but Recommended)
+        run: terraform refresh
+        working-directory: ./infrastructure
+
+      - name: Show Current Resources (Safety Step)
+        run: terraform state list
+        working-directory: ./infrastructure
+
+      - name: Confirm Deletion Step (Interactive for Safety)
+        run: |
+          echo "🚨 WARNING: You're about to destroy ALL infrastructure! 🚨"
+          echo "If this is intentional, proceed. If not, cancel the workflow immediately."
+          sleep 10
 
       - name: Terraform Destroy
         run: terraform destroy -auto-approve
+        working-directory: ./infrastructure
